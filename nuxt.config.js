@@ -5,7 +5,7 @@ export default {
   target: 'static',
 
   router: {
-    base: '/schnell-tester/'
+    base: '/schnelltest-tester/'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
