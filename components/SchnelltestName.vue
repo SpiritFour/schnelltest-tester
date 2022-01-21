@@ -29,7 +29,7 @@ export default {
     },
     getManufacturere() {
       if (this.matches?.manufacturerMatches?.length) {
-        let name = this.name
+        let name = this.manufacturer
         this.matches.manufacturerMatches.forEach((match , _)=>{
           name = name.slice(0, match.indices[0][0]) + "<span class='highlight'>" + name.slice(match.indices[0][0], match.indices[0][1]+1) + "</span>" + name.slice(match.indices[0][1], name.length)
         })
