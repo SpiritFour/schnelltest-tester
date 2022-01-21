@@ -7,7 +7,7 @@
     <div class="text-md-h4 text-h6 font-weight-bold text-center mt-md-16 mt-8">
       Auch deiner?
     </div>
-    <Info />
+    <Info/>
 
     <v-combobox
       v-model="search"
@@ -25,6 +25,22 @@
       v-for="test in matchedSchnelltests"
       :key="test['name'] + test.manufacturer"
     />
+    <br>
+    <br>
+    <v-row align="center"
+           justify="center" style="width:100%; position: absolute; bottom: 1em" class="px-8 px-md-8" v-bind:class="{ desktopContainer: $vuetify.breakpoint.mdAndUp }">
+      <v-col cols="6" class="px-8 px-md-0">
+        <v-img
+          src="./system_ist_sicher.jpg" height="40px" contain
+        />
+      </v-col>
+      <v-col cols="6" class="px-8 px-md-0">
+        <v-img style="background-color: black"
+               src="./spirit-four.png" height="40px" contain
+        />
+      </v-col>
+    </v-row>
+
   </v-container>
 </template>
 
@@ -1295,8 +1311,8 @@ export default {
   },
   methods: {
     setQueryParams(searchString) {
-      const query = searchString ? { s: searchString } : {}
-      this.$router.push({ query })
+      const query = searchString ? {s: searchString} : {}
+      this.$router.push({query})
     },
     initSearch() {
       if (!this.search) return
@@ -1317,7 +1333,7 @@ export default {
               manufacturerMatches.push(match)
             }
           })
-          return { ...x.item, matches: { nameMatches, manufacturerMatches } }
+          return {...x.item, matches: {nameMatches, manufacturerMatches}}
         })
     },
   },
