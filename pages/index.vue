@@ -1,10 +1,10 @@
 <template>
   <v-container v-bind:class="{ desktopContainer: $vuetify.breakpoint.mdAndUp }">
-    <div class="text-md-h2 text-h3 font-weight-bold text-center mt-16">
+    <div class="text-md-h2 text-h4 font-weight-bold text-center mt-md-16 mt-6">
       Von {{ validSchnelltests + invalidSchnelltests }} getesteten Schnelltests
       erkennen {{ validSchnelltests }} Omikron
     </div>
-    <div class="text-md-h4 text-h5 font-weight-bold text-center mt-8 pt-8">
+    <div class="text-md-h4 text-h6 font-weight-bold text-center mt-md-16 mt-8">
       Auch deiner?
     </div>
     <Info />
@@ -12,7 +12,7 @@
     <v-combobox
       v-model="search"
       placeholder="Schnelltest jetzt suchen"
-      class="mt-16 text-md-h5 text-h6 py-4 text-center"
+      class="mt-md-16 mt-8 text-md-h5 text-h6"
       dense
       filled
       rounded

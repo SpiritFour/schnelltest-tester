@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center py-4 text-body" style="width: 100%">
+  <div class="text-center py-4 text-md-body-1 text-body-2" style="width: 100%">
     Daten des Paul-Ehrlich-Institut - Deutsches Bundesinstitut für Impfstoffe
     und biomedizinische Arzneimittel
 

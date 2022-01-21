@@ -1,12 +1,12 @@
 <template>
-  <div class="pa-2">
-    <v-card-text class="text-h5 pb-1" v-html="getName"></v-card-text>
+  <div class="pa-md-2">
+    <v-card-text class="text-md-h5 text-h6 pb-1" v-html="getName"></v-card-text>
     <v-card-text
-      class="text-body-1 py-0"
+      class="text-md-body-1 text-body-2 py-0"
       v-html="getManufacturere"
     ></v-card-text>
 
-    <v-card-text class="text-subtitle-1 grey--text pt-1">
+    <v-card-text class="text-md-subtitle-1 text-md-subtitle-2 grey--text pt-1">
       Erkennt Omikron {{ sensitive ? 'gut' : 'schlecht' }}
     </v-card-text>
   </div>
