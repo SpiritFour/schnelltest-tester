@@ -1,18 +1,18 @@
 <template>
   <v-container v-bind:class="{ desktopContainer: $vuetify.breakpoint.mdAndUp }">
-    <div class="text-h2 font-weight-bold text-center mt-5 mb-8">
+    <div class="text-md-h2 text-h3 font-weight-bold text-center mt-5 mb-8">
       {{ validSchnelltests + invalidSchnelltests }} Schnelltests
       <br>
-      <div class="my-3"/>
+      <div class="py-3"/>
       {{ validSchnelltests }} erkennen Omicron
     </div>
-    <div class="text-h4 font-weight-bold text-center mt-8 pt-8">
+    <div class="text-md-h4 text-h5 font-weight-bold text-center mt-8 pt-8">
       Auch deiner?
     </div>
 
     <v-combobox
       :placeholder="search || 'Schnelltest jetzt suchen'"
-      class="mt-16 text-h5 py-4"
+      class="mt-16 text-md-h5 text-h6 py-4 text-center"
       dense
       filled
       rounded
@@ -1315,7 +1315,7 @@ export default {
         this.matchedSchnelltests = []
       } else {
         console.log( this.fuse.search(searchString)[0])
-        this.matchedSchnelltests = this.fuse.search(searchString).map(x => {
+        this.matchedSchnelltests = this.fuse.search(searchString).slice(0,10).map(x => {
           var nameMatches = []
           var manufacturerMatches = []
 

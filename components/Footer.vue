@@ -1,5 +1,5 @@
 <template>
-  <v-footer app style="width: 100%">
+  <v-footer app absolute style="width: 100%">
     <div class="text-center py-4 text-body" style="width: 100%">
       Daten des Paul-Ehrlich-Institut - Deutsches Bundesinstitut für Impfstoffe
       und biomedizinische Arzneimittel
@@ -23,9 +23,3 @@
     </div>
   </v-footer>
 </template>
-
-<script>
-export default {}
-</script>
-
-<style></style>

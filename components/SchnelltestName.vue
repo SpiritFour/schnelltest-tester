@@ -1,5 +1,6 @@
 <template>
   <div class="pa-2">
+    {{matches}}
     <v-card-text class="text-h4" v-html="getName"></v-card-text>
     <v-card-text class="text-h5 pt-0" v-html="getManufacturere"></v-card-text>
   </div>
@@ -19,9 +20,13 @@ export default {
     getName() {
       if (this.matches?.nameMatches?.length) {
         let name = this.name
-        this.matches.nameMatches.forEach((match , _)=>{
-          name = name.slice(0, match.indices[0][0]) + "<span class='highlight'>" + name.slice(match.indices[0][0], match.indices[0][1]+1) + "</span>" + name.slice(match.indices[0][1], name.length)
-        })
+        this.matches.nameMatches[0].indices= this.matches.nameMatches[0].indices.sort((p, c, _) => {
+          if (p.indices?.[1]-p.indices?.[0]>= c.indices?.[1]-c.indices?.[0]){
+            return 1
+          }
+          return -1
+        })[0]
+        name = name.slice(0, this.matches.nameMatches[0].indices[0]) + "<span class='highlight'>" + name.slice(this.matches.nameMatches[0].indices[0], this.matches.nameMatches[0].indices[1]) + "</span>" + name.slice(this.matches.nameMatches[0].indices[1], name.length)
         return name
       } else {
         return this.name
@@ -30,9 +35,13 @@ export default {
     getManufacturere() {
       if (this.matches?.manufacturerMatches?.length) {
         let name = this.manufacturer
-        this.matches.manufacturerMatches.forEach((match , _)=>{
-          name = name.slice(0, match.indices[0][0]) + "<span class='highlight'>" + name.slice(match.indices[0][0], match.indices[0][1]+1) + "</span>" + name.slice(match.indices[0][1], name.length)
-        })
+        this.matches.manufacturerMatches[0].indices= this.matches.manufacturerMatches[0].indices.sort((p, c, _) => {
+          if (p.indices?.[1]-p.indices?.[0]>= c.indices?.[1]-c.indices?.[0]){
+            return 1
+          }
+          return -1
+        })[0]
+        name = name.slice(0, this.matches.manufacturerMatches[0].indices[0]) + "<span class='highlight'>" + name.slice(this.matches.manufacturerMatches[0].indices[0], this.matches.manufacturerMatches[0].indices[1]) + "</span>" + name.slice(this.matches.manufacturerMatches[0].indices[1], name.length)
         return name
       } else {
         return this.manufacturer
