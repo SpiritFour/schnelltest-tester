@@ -16,6 +16,7 @@
         style="flex-grow: 1"
         :name="test.name"
         :manufacturer="test.manufacturer"
+        :matches="test.matches"
       />
     </div>
   </v-card>
