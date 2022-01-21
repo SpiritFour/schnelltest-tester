@@ -1,27 +1,26 @@
 <template>
-  <v-card
-    class="mb-4 rounded-xl"
-    :color="test['omicron-sensitive'] ? 'success' : 'error'"
-  >
-    <div style="display: flex; align-items: center">
+  <v-card outlined class="mb-4 rounded-xl">
+    <div style="display: flex; align-items: baseline">
       <div>
-        <v-img
-          class="ml-8"
-          :src="test['omicron-sensitive'] ?  './ok-hand.png':'./microbe.png' "
-          height="70px"
-          width="70px"
-        />
+        <v-icon
+          large
+          :color="test['omicron-sensitive'] ? 'green' : 'red'"
+          class="ml-8 mt-2"
+          >{{
+            test['omicron-sensitive'] ? 'mdi-check-circle' : 'mdi-alert-circle'
+          }}
+        </v-icon>
       </div>
       <SchnelltestName
         style="flex-grow: 1"
         :name="test.name"
+        :sensitive="test['omicron-sensitive']"
         :manufacturer="test.manufacturer"
         :matches="test.matches"
       />
     </div>
   </v-card>
 </template>
-
 <script>
 import SchnelltestName from './SchnelltestName.vue'
 export default {

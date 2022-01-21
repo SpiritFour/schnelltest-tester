@@ -1,25 +1,24 @@
 <template>
   <v-container v-bind:class="{ desktopContainer: $vuetify.breakpoint.mdAndUp }">
-    <div class="text-md-h2 text-h3 font-weight-bold text-center mt-5 mb-8">
-      {{ validSchnelltests + invalidSchnelltests }} Schnelltests
-      <br>
-      <div class="py-3"/>
-      {{ validSchnelltests }} erkennen Omicron
+    <div class="text-md-h2 text-h3 font-weight-bold text-center mt-16">
+      Von {{ validSchnelltests + invalidSchnelltests }} getesteten Schnelltests
+      erkennen {{ validSchnelltests }} Omikron
     </div>
     <div class="text-md-h4 text-h5 font-weight-bold text-center mt-8 pt-8">
       Auch deiner?
     </div>
+    <Info />
 
     <v-combobox
-      :placeholder="search || 'Schnelltest jetzt suchen'"
+      v-model="search"
+      placeholder="Schnelltest jetzt suchen"
       class="mt-16 text-md-h5 text-h6 py-4 text-center"
       dense
       filled
       rounded
       :items="schnelltests"
       :search-input.sync="search"
-    >
-    </v-combobox>
+    />
 
     <Schnelltest
       :test="test"
@@ -46,12 +45,9 @@ const options = {
   // ignoreLocation: true,
   // ignoreFieldNorm: false,
   // fieldNormWeight: 1,
-  keys: [
-    "manufacturer",
-    'name'
-  ]
-};
-const schnelltests= [
+  keys: ['manufacturer', 'name'],
+}
+const schnelltests = [
   {
     manufacturer: 'Absology Co.,Ltd.',
     name: 'INIST COVID-19 Ag Rapid',
@@ -364,8 +360,7 @@ const schnelltests= [
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'Asterion Otel Insaat Bilisim Medikal Maden Tic.Ltd.Sti.',
+    manufacturer: 'Asterion Otel Insaat Bilisim Medikal Maden Tic.Ltd.Sti.',
     name: 'AS-check COVID-19 Antigen Schnelltest',
     'omicron-sensitive': true,
   },
@@ -380,8 +375,7 @@ const schnelltests= [
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'AXIOM Gesellschaft für Diagnostica und Biochemica mbI-I',
+    manufacturer: 'AXIOM Gesellschaft für Diagnostica und Biochemica mbI-I',
     name: 'Axiom Diagnostics COVID-19 Ag Schnelltest',
     'omicron-sensitive': true,
   },
@@ -436,14 +430,12 @@ const schnelltests= [
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'Beijing Wantai Biological Pharmacy Enterprise Co., Ltd.',
+    manufacturer: 'Beijing Wantai Biological Pharmacy Enterprise Co., Ltd.',
     name: 'Wantai SARS-CoV-2 Ag Rapid Test (FIA)',
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'Beijing Wantai Biological Pharmacy Enterprise Co., Ltd.',
+    manufacturer: 'Beijing Wantai Biological Pharmacy Enterprise Co., Ltd.',
     name: 'Wantai SARS-CoV-2 Ag Schnelltest (Kolloidales Gold)',
     'omicron-sensitive': true,
   },
@@ -503,8 +495,7 @@ const schnelltests= [
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'Cesna Biyoteknoloji Arastirma Gelistirme Laboratuvar Sist.',
+    manufacturer: 'Cesna Biyoteknoloji Arastirma Gelistirme Laboratuvar Sist.',
     name: 'Check Up SARS-CoV-2 Nasal Antigen Rapid Test',
     'omicron-sensitive': true,
   },
@@ -730,14 +721,12 @@ const schnelltests= [
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'Hangzhou Zheda Dixun Biological Gene Engineering Co., Ltd.',
+    manufacturer: 'Hangzhou Zheda Dixun Biological Gene Engineering Co., Ltd.',
     name: 'SARS-Cov-2 Nucleocapsid(N) Antigen Rapid Test Cassette',
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'Hangzhou Zheda Dixun Biological Gene Engineering Co., Ltd.',
+    manufacturer: 'Hangzhou Zheda Dixun Biological Gene Engineering Co., Ltd.',
     name: 'Bisdeal SARS-CoV-2 Antigen-Schnelltest',
     'omicron-sensitive': true,
   },
@@ -798,8 +787,7 @@ const schnelltests= [
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'Jiangsu Konsung Bio-Medical Science And Technology Co., Ltd',
+    manufacturer: 'Jiangsu Konsung Bio-Medical Science And Technology Co., Ltd',
     name: 'Konsung COVID-19 Antigen Rapid Test Kit',
     'omicron-sensitive': true,
   },
@@ -1035,8 +1023,7 @@ const schnelltests= [
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'Senova Gesellschaft für Biowissenschaft und Technik mbH',
+    manufacturer: 'Senova Gesellschaft für Biowissenschaft und Technik mbH',
     name: 'GreenLight SARS-CoV-2 Antigen-Test',
     'omicron-sensitive': true,
   },
@@ -1161,8 +1148,7 @@ const schnelltests= [
     'omicron-sensitive': true,
   },
   {
-    manufacturer:
-      'Suzhou Soochow University Saier Immuno Biotech Co., Ltd.',
+    manufacturer: 'Suzhou Soochow University Saier Immuno Biotech Co., Ltd.',
     name: 'InstantSure Covid-19 Ag CARD',
     'omicron-sensitive': true,
   },
@@ -1291,44 +1277,61 @@ const schnelltests= [
 export default {
   data() {
     return {
-      search: '',
+      search: this.$route.query.s || '',
       schnelltests,
       matchedSchnelltests: [],
-      fuse: new Fuse(schnelltests, options)
+      fuse: new Fuse(schnelltests, options),
     }
   },
   computed: {
     validSchnelltests() {
       if (!this.schnelltests) return 0
-      return this.schnelltests.filter((a) => a['omicron-sensitive'])
-        .length
+      return this.schnelltests.filter((a) => a['omicron-sensitive']).length
     },
     invalidSchnelltests() {
       if (!this.schnelltests) return 0
-      return this.schnelltests.filter((a) => !a['omicron-sensitive'])
-        .length
+      return this.schnelltests.filter((a) => !a['omicron-sensitive']).length
     },
   },
-  watch: {
-    search(searchString) {
-      if (!searchString) {
-        this.matchedSchnelltests = []
-      } else {
-        console.log( this.fuse.search(searchString)[0])
-        this.matchedSchnelltests = this.fuse.search(searchString).slice(0,10).map(x => {
+  methods: {
+    setQueryParams(searchString) {
+      const query = { s: searchString }
+      this.$router.push({ query })
+    },
+    initSearch() {
+      if (!this.search) return
+      this.fuzzySearchTests(this.search)
+    },
+    fuzzySearchTests(searchString) {
+      this.matchedSchnelltests = this.fuse
+        .search(searchString)
+        .slice(0, 10)
+        .map((x) => {
           var nameMatches = []
           var manufacturerMatches = []
 
           x.matches.forEach((match, _) => {
             if (match.key === 'name') {
               nameMatches.push(match)
-            }
-            else{
+            } else {
               manufacturerMatches.push(match)
             }
           })
-          return {...x.item, matches: {nameMatches, manufacturerMatches}}})
+          return { ...x.item, matches: { nameMatches, manufacturerMatches } }
+        })
+    },
+  },
+  mounted() {
+    this.initSearch()
+  },
+  watch: {
+    search(searchString) {
+      if (!searchString) {
+        this.matchedSchnelltests = []
+      } else {
+        this.fuzzySearchTests(searchString)
       }
+      this.setQueryParams(searchString)
     },
   },
 }
@@ -1342,6 +1345,10 @@ export default {
 }
 
 .v-autocomplete__content {
+  display: none !important;
+}
+
+.v-input__append-inner {
   display: none !important;
 }
 
