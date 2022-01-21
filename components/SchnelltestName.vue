@@ -1,6 +1,5 @@
 <template>
   <div class="pa-2">
-    {{matches}}
     <v-card-text class="text-h4" v-html="getName"></v-card-text>
     <v-card-text class="text-h5 pt-0" v-html="getManufacturere"></v-card-text>
   </div>
