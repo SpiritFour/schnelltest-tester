@@ -5,23 +5,23 @@ export default {
   target: 'static',
 
   router: {
-    base: '/schnelltest-tester/'
+    base: '/schnelltest-tester/',
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - schnelltest-tester',
-    title: 'schnelltest-tester',
+    titleTemplate: '%s - the original',
+    title: 'Schnelltest Tester',
     htmlAttrs: {
       lang: 'en',
     },
     meta: [
-      {charset: 'utf-8'},
-      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: ''},
-      {name: 'format-detection', content: 'telephone=no'},
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: '' },
+      { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -66,4 +66,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  server: {
+    host: '0.0.0.0',
+    port: 80,
+  },
 }

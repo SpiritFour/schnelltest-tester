@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-main>
+    <v-main style="overflow: hidden">
       <Nuxt />
     </v-main>
     <Footer />

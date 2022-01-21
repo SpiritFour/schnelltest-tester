@@ -1,12 +1,17 @@
 <template>
   <v-container v-bind:class="{ desktopContainer: $vuetify.breakpoint.mdAndUp }">
-    <h1 class="text-h2 font-weight-bold text-center my-5">
-      {{ validSchnelltests + invalidSchnelltests }} Schnelltests -
+    <div class="text-h2 font-weight-bold text-center mt-5 mb-8">
+      {{ validSchnelltests + invalidSchnelltests }} Schnelltests
+      <br>
+      <div class="my-3"/>
       {{ validSchnelltests }} erkennen Omicron
-    </h1>
+    </div>
+    <div class="text-h4 font-weight-bold text-center mt-8 pt-8">
+      Auch deiner?
+    </div>
 
     <v-combobox
-      :placeholder="search || 'Schnelltest eingeben'"
+      :placeholder="search || 'Schnelltest jetzt suchen'"
       class="mt-16 text-h5 py-4"
       dense
       filled
@@ -1288,26 +1293,26 @@ export default {
     return {
       search: '',
       schnelltests,
-      matchedSchnelltests: this.schnelltests,
+      matchedSchnelltests: [],
       fuse: new Fuse(schnelltests, options)
     }
   },
   computed: {
     validSchnelltests() {
-      if (!this.matchedSchnelltests) return 0
-      return this.matchedSchnelltests.filter((a) => a['omicron-sensitive'])
+      if (!this.schnelltests) return 0
+      return this.schnelltests.filter((a) => a['omicron-sensitive'])
         .length
     },
     invalidSchnelltests() {
-      if (!this.matchedSchnelltests) return 0
-      return this.matchedSchnelltests.filter((a) => !a['omicron-sensitive'])
+      if (!this.schnelltests) return 0
+      return this.schnelltests.filter((a) => !a['omicron-sensitive'])
         .length
     },
   },
   watch: {
     search(searchString) {
       if (!searchString) {
-        this.matchedSchnelltests = this.schnelltests
+        this.matchedSchnelltests = []
       } else {
         console.log( this.fuse.search(searchString)[0])
         this.matchedSchnelltests = this.fuse.search(searchString).map(x => {
