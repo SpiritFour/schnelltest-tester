@@ -1295,7 +1295,7 @@ export default {
   },
   methods: {
     setQueryParams(searchString) {
-      const query = { s: searchString }
+      const query = searchString ? { s: searchString } : {}
       this.$router.push({ query })
     },
     initSearch() {
