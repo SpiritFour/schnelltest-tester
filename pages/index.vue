@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-bind:class="{ desktopContainer: $vuetify.breakpoint.mdAndUp }">
     <h1 class="text-h2 font-weight-bold text-center my-5">
       {{ validSchnelltests + invalidSchnelltests }} Schnelltests -
       {{ validSchnelltests }} erkennen Omicron
@@ -1312,5 +1312,9 @@ export default {
 .v-input__slot {
   padding-top: 20px !important;
   padding-bottom: 25px !important;
+}
+
+.desktopContainer{
+  max-width: 800px !important;
 }
 </style>
